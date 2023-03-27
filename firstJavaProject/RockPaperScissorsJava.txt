@@ -1,0 +1,42 @@
+import java.util.Scanner;
+public class rockPaperScissors {
+
+	public static void main(String[] args) {
+		
+		Scanner in = new Scanner(System.in);
+		
+		int computer = (int) (3 * Math.random());
+
+		String com = "";
+		
+		if (computer <= 1)
+			com = "Rock";
+		else if (computer <= 2 && computer > 1)
+			com = "Scissors";
+		else if (computer <= 3 && computer > 2)	{
+			com = "Paper";
+		}
+		
+		System.out.println("We are playing Rock, Paper, Scissors against the computer!");
+		System.out.print("Enter your move (Must capitalize, misspells will return error): ");
+		String answer = in.next();
+		
+		answer = answer.substring(0,1).toUpperCase() + answer.substring(1, answer.length());
+		
+		if (!answer.equals("Rock") && !answer.equals("Scissors") && !answer.equals("Paper"))	{
+			System.out.println("Error: Invalid input");
+			System.exit(-1);
+		}
+			
+		System.out.println("The Computer answers " + com);
+		
+		if (com.equals(answer))
+			System.out.println("It's a tie!");
+		else if ((com.equals("Rock") && answer.equals("Paper")) || (com.equals("Paper") && answer.equals("Scissors")) || (com.equals("Scissors") && answer.equals("Rock")))
+				System.out.println("Congrats, you win!");
+		else
+				System.out.println("You lose!");
+		
+		in.close();
+	}
+}
